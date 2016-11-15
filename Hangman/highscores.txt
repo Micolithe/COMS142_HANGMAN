@@ -1,0 +1,8 @@
+		HIGH SCORES:
+1. null
+2. null
+3. null
+4. null
+5. null
+		1. Return to main menu
+		2. Quit
