@@ -37,6 +37,7 @@
 								<option id="org.eclipse.cdt.msvc.link.option.libraries.1763125327" name="Libraries" superClass="org.eclipse.cdt.msvc.link.option.libraries" valueType="libs">
 									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="&quot;'C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Lib\Gdi32.Lib'&quot;"/>
 									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="&quot;'C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Lib\User32.Lib'&quot;"/>
+									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="&quot;'C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Lib\WinMM.lib'&quot;"/>
 								</option>
 								<inputType id="org.eclipse.cdt.msvc.link.inputType.2114852974" superClass="org.eclipse.cdt.msvc.link.inputType"/>
 							</tool>

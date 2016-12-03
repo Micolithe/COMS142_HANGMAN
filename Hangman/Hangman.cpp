@@ -10,6 +10,10 @@
 #include <windows.h>
 #include <vector>
 #include <algorithm>
+#include <mmsystem.h>
+#pragma comment(lib, "winmm.lib");
+
+
 
 using namespace std;
 void printScreen(string);
@@ -35,12 +39,16 @@ int main()
 	int seed = time(0); //Seed random number gen
 	int mainScreenChoice;
 	bool mainScreen = true;
+
+
 	srand(seed);
 	setScreenSize();
-	printScreen("C:\\Users\\Alex\\workspace\\Hangman\\hangmanMainscreen.txt");
-	cin >> mainScreenChoice;
+
 	while (mainScreen)
 	{
+		printScreen("C:\\Users\\Alex\\git\\COMS142_HANGMAN\\Hangman\\hangmanMainscreen.txt");
+		mainScreenChoice = 0;
+		cin >> mainScreenChoice;
 		while (mainScreenChoice <= 0 || mainScreenChoice > 3)
 		{
 			cout << "Not a valid choice. Select Again.\n";
@@ -48,16 +56,17 @@ int main()
 		}
 		if (mainScreenChoice == 3)
 		{
-			return 0;
+			exit(EXIT_SUCCESS);
 		}
 		else if (mainScreenChoice == 2)
 		{
-			highScoreScreen("C:\\Users\\Alex\\workspace\\Hangman\\highscores.txt");
+			highScoreScreen("C:\\Users\\Alex\\git\\COMS142_HANGMAN\\Hangman\\highscores.txt");
 		}
 		else if (mainScreenChoice == 1)
 		{
-			mainScreen = false;
+			//mainScreen = false;
 			chooseDifficultyScreen();
+
 		}
 	}
     return 0;
@@ -118,8 +127,7 @@ void highScoreScreen(string path)
 	}
 	if (choice == 1)
 	{
-		printScreen("C:\\Users\\Alex\\workspace\\Hangman\\hangmanMainscreen.txt", true);
-		mainScreen();
+		main();
 	}
 	else
 	{
@@ -152,16 +160,17 @@ void mainScreen()
 	}
 	else if (choice == 2)
 	{
-		highScoreScreen("C:\\Users\\Alex\\workspace\\Hangman\\highscores.txt");
+		highScoreScreen("C:\\Users\\Alex\\git\\COMS142_HANGMAN\\Hangman\\highscores.txt");
 	}
 }
 
 void chooseDifficultyScreen()
 {
 	ifstream infile;
-	infile.open("C:\\Users\\Alex\\workspace\\Hangman\\difficultyScreen.txt");
+	infile.open("C:\\Users\\Alex\\git\\COMS142_HANGMAN\\Hangman\\difficultyScreen.txt");
 	system("CLS");
 	int choice;
+	PlaySound(TEXT("spacejam.wav"),NULL,SND_FILENAME |SND_ASYNC);
 
 	while (infile.good())
 	{
@@ -197,7 +206,7 @@ void startGame(int difficultyLevel)
 	ifstream infile;
 	if (difficultyLevel == 1)
 	{
-		infile.open("C:\\Users\\Alex\\workspace\\Hangman\\easyDifficultyWords.txt");
+		infile.open("C:\\Users\\Alex\\git\\COMS142_HANGMAN\\Hangman\\easyDifficultyWords.txt");
 		while (infile)
 		{
 			string temp;
@@ -207,7 +216,7 @@ void startGame(int difficultyLevel)
 	}
 	else if (difficultyLevel == 2)
 	{
-		infile.open("C:\\Users\\Alex\\workspace\\Hangman\\mediumDifficultyWords.txt");
+		infile.open("C:\\Users\\Alex\\git\\COMS142_HANGMAN\\Hangman\\mediumDifficultyWords.txt");
 		while (infile)
 		{
 			string temp;
@@ -217,7 +226,7 @@ void startGame(int difficultyLevel)
 	}
 	else if (difficultyLevel == 3)
 	{
-		infile.open("C:\\Users\\Alex\\workspace\\Hangman\\hardDifficultyWords.txt");
+		infile.open("C:\\Users\\Alex\\git\\COMS142_HANGMAN\\Hangman\\hardDifficultyWords.txt");
 		while (infile)
 		{
 			string temp;
@@ -226,7 +235,7 @@ void startGame(int difficultyLevel)
 		}
 	}
 
-	printScreen("C:\\Users\\Alex\\workspace\\Hangman\\hangmanStart.txt", true);
+	printScreen("C:\\Users\\Alex\\git\\COMS142_HANGMAN\\Hangman\\hangmanStart.txt", true);
 	word = getWord(difficultyLevel);
 	printDashes();
 	guess();
@@ -240,15 +249,15 @@ string getWord(int difficultyLevel)
 	cout << i << endl;
 	if (difficultyLevel == 1)
 	{
-		infile.open("C:\\Users\\Alex\\workspace\\Hangman\\easyDifficultyWords.txt");
+		infile.open("C:\\Users\\Alex\\git\\COMS142_HANGMAN\\Hangman\\easyDifficultyWords.txt");
 	}
 	else if (difficultyLevel == 2)
 	{
-		infile.open("C:\\Users\\Alex\\workspace\\Hangman\\mediumDifficultyWords.txt");
+		infile.open("C:\\Users\\Alex\\git\\COMS142_HANGMAN\\Hangman\\mediumDifficultyWords.txt");
 	}
 	else if (difficultyLevel == 3)
 	{
-		infile.open("C:\\Users\\Alex\\workspace\\Hangman\\hardDifficultyWords.txt");
+		infile.open("C:\\Users\\Alex\\git\\COMS142_HANGMAN\\Hangman\\hardDifficultyWords.txt");
 	}
 
 	return words[i];
@@ -324,9 +333,18 @@ void guess()
 	}
 	if(missed > 6)
 	{
-		printScreen("C:\\Users\\Alex\\workspace\\Hangman\\gameOver.txt", true);
-		exit(EXIT_SUCCESS);
+		printScreen("C:\\Users\\Alex\\git\\COMS142_HANGMAN\\Hangman\\gameOver.txt", true);
+
+		int num;
+		cout<<"0 To Return to Main Menu\n 1 To Exit";
+			char c;
+			cin  >> c;           // read next character without extracting it
+			if (c == 1)
+				exit(EXIT_SUCCESS);
+			else if(c == 0)
+				return;
 	}
+
 }
 
 void updateGraphic(int numIncorrect)
@@ -334,31 +352,31 @@ void updateGraphic(int numIncorrect)
 	system("CLS");
 	if (numIncorrect == 0)
 	{
-		printScreen("C:\\Users\\Alex\\workspace\\Hangman\\hangmanStart.txt", true);
+		printScreen("C:\\Users\\Alex\\git\\COMS142_HANGMAN\\Hangman\\hangmanStart.txt", true);
 	}
 	else if (numIncorrect == 1)
 	{
-		printScreen("C:\\Users\\Alex\\workspace\\Hangman\\hangman1Wrong.txt", true);
+		printScreen("C:\\Users\\Alex\\git\\COMS142_HANGMAN\\Hangman\\hangman1Wrong.txt", true);
 	}
 	else if(numIncorrect == 2)
 	{
-		printScreen("C:\\Users\\Alex\\workspace\\Hangman\\hangman2Wrong.txt", true);
+		printScreen("C:\\Users\\Alex\\git\\COMS142_HANGMAN\\Hangman\\hangman2Wrong.txt", true);
 	}
 	else if(numIncorrect == 3)
 	{
-		printScreen("C:\\Users\\Alex\\workspace\\Hangman\\hangman3Wrong.txt", true);
+		printScreen("C:\\Users\\Alex\\git\\COMS142_HANGMAN\\Hangman\\hangman3Wrong.txt", true);
 	}
 	else if(numIncorrect == 4)
 	{
-		printScreen("C:\\Users\\Alex\\workspace\\Hangman\\hangman4Wrong.txt", true);
+		printScreen("C:\\Users\\Alex\\git\\COMS142_HANGMAN\\Hangman\\hangman4Wrong.txt", true);
 	}
 	else if(numIncorrect == 5)
 	{
-		printScreen("C:\\Users\\Alex\\workspace\\Hangman\\hangman5Wrong.txt", true);
+		printScreen("C:\\Users\\Alex\\git\\COMS142_HANGMAN\\Hangman\\hangman5Wrong.txt", true);
 	}
 	else if (numIncorrect == 6)
 	{
-		printScreen("C:\\Users\\Alex\\workspace\\Hangman\\hangman6Wrong.txt", true);
+		printScreen("C:\\Users\\Alex\\git\\COMS142_HANGMAN\\Hangman\\hangman6Wrong.txt", true);
 	}
 	else
 	{
@@ -369,10 +387,15 @@ void updateGraphic(int numIncorrect)
 
 void gameWin()
 {
-	printScreen("C:\\Users\\Alex\\workspace\\Hangman\\winScreen.txt", true);
-	char ch;
-	cin>>ch;
-	exit(EXIT_SUCCESS);
+	printScreen("C:\\Users\\Alex\\git\\COMS142_HANGMAN\\Hangman\\winScreen.txt", true);
+	int num;
+	cout<<"Press Enter to Continue...";
+		char c;
+		c = cin.peek();           // read next character without extracting it
+		if (c == '\n')
+			return;
+		cin >> num;
+		return;
 }
 
 
