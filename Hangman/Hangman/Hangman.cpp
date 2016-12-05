@@ -36,29 +36,35 @@ vector<int> hiscore;
 string username[10];
 vector<char> usedLetters, dashes;
 string word, userName;
+bool cheat = false;
 map <string, int> hiscoreList;
 int mainScreenChoice;
-int gamesWon = 0;
+int gamesWon;
 
 
 int main()
 {
 	int seed = time(0); //Seed random number gen
-	srand(seed);
-	PlaySound(TEXT("..\\prelude.wav"), NULL, SND_ASYNC);
+	srand(seed); 
 	mainScreen();
 	
 }
 
 void mainScreen()
 {
+	PlaySound(NULL, 0, 0);
+	PlaySound(TEXT("..\\prelude.wav"), NULL, SND_ASYNC);
 	bool mainScreen = true;
+	system("Color F0");
 	setScreenSize();
 	printScreen("..\\hangmanMainscreen.txt");
-	cin >> mainScreenChoice;
+	if (gamesWon > 0)
+		cout << "\t\t\t\tScore: " << gamesWon;
 	while (mainScreen)
 	{
-		while (mainScreenChoice <= 0 || mainScreenChoice > 3)
+		cin >> mainScreenChoice;
+
+		while(mainScreenChoice <= 0 || mainScreenChoice > 3 && mainScreenChoice != 45)
 		{
 			cout << "Not a valid choice. Select Again.\n";
 			cin >> mainScreenChoice;
@@ -76,6 +82,11 @@ void mainScreen()
 		{
 			mainScreen = false;
 			chooseDifficultyScreen();
+		}
+		else if (mainScreenChoice == 45)
+		{
+			cheat = true;
+			continue;
 		}
 	}
 	exit(EXIT_SUCCESS);
@@ -133,15 +144,10 @@ void highScoreScreen(string path)
 		if(tempUserName.length() != 0)
 		cout << tempUserName << ':' << userHiscore << endl;
 	}
+
 	cout << "1: Return to Main Menu\n2: Exit" << endl;
 	cin >> choice;
 	infile.close();
-	
-	
-	/*for (int i = 0; i < 10; i++)
-	{
-		cout << i + 1 << ':' << ;
-	}*/
 
 	if(choice < 1 || choice > 2)
 	{
@@ -150,6 +156,7 @@ void highScoreScreen(string path)
 	}
 	else if (choice == 1)
 	{
+		system("CLS");
 		mainScreen();
 	}
 	else
@@ -165,13 +172,14 @@ void setScreenSize() //Sets the size of the console window
 	RECT rectangle;
 	GetWindowRect(screen, &rectangle);
 	MoveWindow(screen, rectangle.left, rectangle.top, 900, 900, TRUE);
-	system("Color F0");
+	
 }
 
 void chooseDifficultyScreen()
 {
 	ifstream infile;
 	infile.open("..\\difficultyScreen.txt");
+	
 	system("CLS");
 	int choice;
 
@@ -182,6 +190,7 @@ void chooseDifficultyScreen()
 		temp += '\n';
 		cout << temp;
 	}
+	system("Color 5F");
 	infile.close();
 	cin >> choice;
 	while(choice < 1 || choice > 3)
@@ -340,7 +349,18 @@ void guess()
 		usedLetters.clear();
 		words.clear();
 		dashes.clear();
+		system("Color 0C");
+		if(!cheat)
+		{
+			PlaySound(TEXT("..\\hangmanRope.wav"), NULL, SND_ASYNC);
+		}
+		else if(cheat)
+		{
+			cout << "here";
+			PlaySound(TEXT("..\\garbage.wav"), NULL, SND_ASYNC);
+		}
 		printScreen("..\\gameOver.txt", true);
+		cout << "The Word Was " <<  word << endl;
 		cout << "Press Enter to Continue...";
 		char c = cin.get();
 		cin.ignore();
@@ -387,11 +407,6 @@ void updateGraphic(int numIncorrect)
 
 }
 
-void hiScore()
-{
-	
-}
-
 void gameWin()
 {
 	static bool firstWin = true;
@@ -411,6 +426,7 @@ void gameWin()
 		words.clear();
 		dashes.clear();
 		usedLetters.clear();
+		system("CLS");
 		main();
 	}
 	else
