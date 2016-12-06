@@ -37,6 +37,7 @@
 								<option id="org.eclipse.cdt.msvc.link.option.libraries.1763125327" name="Libraries" superClass="org.eclipse.cdt.msvc.link.option.libraries" valueType="libs">
 									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="&quot;'C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Lib\Gdi32.Lib'&quot;"/>
 									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="&quot;'C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Lib\User32.Lib'&quot;"/>
+									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="&quot;'C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Lib\WinMM.Lib'&quot;"/>
 								</option>
 								<inputType id="org.eclipse.cdt.msvc.link.inputType.2114852974" superClass="org.eclipse.cdt.msvc.link.inputType"/>
 							</tool>
@@ -79,7 +80,7 @@
 								<inputType id="org.eclipse.cdt.msvc.rc.inputType.1607064949" superClass="org.eclipse.cdt.msvc.rc.inputType"/>
 							</tool>
 							<tool id="org.eclipse.cdt.msvc.link.exe.release.389802714" name="Linker (link)" superClass="org.eclipse.cdt.msvc.link.exe.release">
-								<option id="org.eclipse.cdt.msvc.link.option.libraries.806591151" superClass="org.eclipse.cdt.msvc.link.option.libraries" valueType="libs">
+								<option id="org.eclipse.cdt.msvc.link.option.libraries.806591151" name="Libraries" superClass="org.eclipse.cdt.msvc.link.option.libraries" valueType="libs">
 									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="&quot;C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Lib\Gdi32.Lib&quot;"/>
 								</option>
 								<inputType id="org.eclipse.cdt.msvc.link.inputType.2087396008" superClass="org.eclipse.cdt.msvc.link.inputType"/>
@@ -97,7 +98,14 @@
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
 	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
-	<storageModule moduleId="refreshScope"/>
+	<storageModule moduleId="refreshScope" versionNumber="2">
+		<configuration configurationName="Debug">
+			<resource resourceType="PROJECT" workspacePath="/Hangman"/>
+		</configuration>
+		<configuration configurationName="Release">
+			<resource resourceType="PROJECT" workspacePath="/Hangman"/>
+		</configuration>
+	</storageModule>
 	<storageModule moduleId="scannerConfiguration">
 		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 		<scannerConfigBuildInfo instanceId="org.eclipse.cdt.msvc.exe.release.1682952946;org.eclipse.cdt.msvc.exe.release.1682952946.;org.eclipse.cdt.msvc.cl.c.exe.release.803384020;org.eclipse.cdt.msvc.cl.inputType.c.122842493">
@@ -113,4 +121,5 @@
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.msw.build.clScannerInfo"/>
 		</scannerConfigBuildInfo>
 	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 </cproject>

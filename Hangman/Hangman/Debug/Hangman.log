@@ -1,8 +1,0 @@
-﻿  Hangman.cpp
-c:\users\adam\documents\visual studio 2015\projects\hangman\hangman\hangman.cpp(47): warning C4244: 'initializing': conversion from 'time_t' to 'int', possible loss of data
-c:\users\adam\documents\visual studio 2015\projects\hangman\hangman\hangman.cpp(280): warning C4018: '<': signed/unsigned mismatch
-c:\users\adam\documents\visual studio 2015\projects\hangman\hangman\hangman.cpp(292): warning C4018: '<': signed/unsigned mismatch
-c:\users\adam\documents\visual studio 2015\projects\hangman\hangman\hangman.cpp(318): warning C4018: '<': signed/unsigned mismatch
-c:\users\adam\documents\visual studio 2015\projects\hangman\hangman\hangman.cpp(321): warning C4018: '<': signed/unsigned mismatch
-  Hangman.vcxproj -> C:\Users\Adam\Documents\Visual Studio 2015\Projects\Hangman\Debug\Hangman.exe
-  Hangman.vcxproj -> C:\Users\Adam\Documents\Visual Studio 2015\Projects\Hangman\Debug\Hangman.pdb (Full PDB)
